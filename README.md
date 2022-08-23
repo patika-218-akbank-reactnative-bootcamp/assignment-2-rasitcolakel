@@ -4,6 +4,18 @@
 
 # Assignment 2
 
+## Table of Contents
+
+- [Installing the **React Navigation** library](#installing-the-react-navigation-library)
+  - [iOS configurations](#ios-configurations)
+  - [Android configurations](#android-configurations)
+  - [Modifying App.tsx file](#modifying-apptsx-file)
+  - [Creating the stack navigator](#creating-the-stack-navigator)
+    - [Navigator.tsx file](#navigatortsx-file)
+- [Installing the **react-native-vector-icons** library](#installing-the-react-native-vector-icons-library)
+  - [iOS configurations](#ios-configurations-1)
+  - [Android configurations](#android-configurations-1)
+
 ## Installing the **React Navigation** library
 
 It is a library that helps us to build a navigation system for React Native.
@@ -16,13 +28,13 @@ npm install @react-navigation/native
 
 After the installation we need to install the pods for iOS.
 
-**iOS**
+## **iOS** configurations
 
 ```bash
 npx pod-install ios
 ```
 
-**Android**
+## **Android** configurations
 
 Import the Bundle
 
@@ -67,6 +79,8 @@ npm install react-native-screens react-native-safe-area-context
 
 Then we need to create a file named **Navigator.tsx** under the src/screens folder and add the following code:
 
+## Navigator.tsx file
+
 ```typescript
 import * as React from 'react';
 import Home from './Home';
@@ -89,4 +103,40 @@ const Navigator = () => {
 };
 
 export default Navigator;
+```
+
+## Installing the **react-native-vector-icons** library
+
+```bash
+npm install --save react-native-vector-icons && @types/react-native-vector-icons
+```
+
+### **iOS** configurations
+
+```plist
+<key>UIAppFonts</key>
+<array>
+    <string>AntDesign.ttf</string>
+    <string>Entypo.ttf</string>
+    <string>EvilIcons.ttf</string>
+    <string>Feather.ttf</string>
+    <string>FontAwesome.ttf</string>
+    <string>FontAwesome5_Brands.ttf</string>
+    <string>FontAwesome5_Regular.ttf</string>
+    <string>FontAwesome5_Solid.ttf</string>
+    <string>Fontisto.ttf</string>
+    <string>Foundation.ttf</string>
+    <string>Ionicons.ttf</string>
+    <string>MaterialIcons.ttf</string>
+    <string>MaterialCommunityIcons.ttf</string>
+    <string>SimpleLineIcons.ttf</string>
+    <string>Octicons.ttf</string>
+    <string>Zocial.ttf</string>
+</array>
+```
+
+### **Android** configurations
+
+```java
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 ```
