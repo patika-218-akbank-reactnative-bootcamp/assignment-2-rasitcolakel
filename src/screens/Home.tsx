@@ -12,14 +12,21 @@ import React, {useRef, useState} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
 import {Chat, chatList} from '../assets/messages';
 import ChatComponent from '../components/Chat';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from './Navigator';
+
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 type RenderItemProps = {
   item: Chat;
 };
-const Home = () => {
+
+const Home = ({navigation}: Props) => {
   const fadeAnimTop = useRef(new Animated.Value(0)).current;
   const fadeAnimBottom = useRef(new Animated.Value(70)).current;
   const [initialHeight, setInitialHeight] = useState(0);
+
+  // When scrolling it will make some animations
   const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     const y = e.nativeEvent.contentOffset.y;
     if (y > 30) {
@@ -33,7 +40,18 @@ const Home = () => {
       fadeAnimBottom.setValue(initialHeight);
     }
   };
-  const renderItem = ({item}: RenderItemProps) => <ChatComponent chat={item} />;
+
+  const renderItem = ({item}: RenderItemProps) => (
+    <ChatComponent
+      chat={item}
+      onPress={() =>
+        navigation.push('ChatScreen', {
+          chat: item,
+        })
+      }
+    />
+  );
+
   const renderHeader = () => (
     <View style={styles.headerContainer}>
       <View style={styles.actionsContainer}>
@@ -49,9 +67,9 @@ const Home = () => {
           initialHeight ? {height: fadeAnimBottom} : {},
         ]}
         onLayout={e => {
-          if (initialHeight) return;
-          else {
-            console.log(e.nativeEvent.layout);
+          if (initialHeight) {
+            return;
+          } else {
             fadeAnimBottom.setValue(e.nativeEvent.layout.height);
             setInitialHeight(e.nativeEvent.layout.height);
           }

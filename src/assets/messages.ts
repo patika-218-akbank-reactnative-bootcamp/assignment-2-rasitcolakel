@@ -11,7 +11,7 @@ export interface Receiver {
 }
 
 export interface Message {
-  id: number;
+  id: string;
   text: string;
   datetime: string;
 }
@@ -61,7 +61,7 @@ export const getRandomLastName = (): string => {
 export const getRandomUser = (): Receiver => {
   const firstName = getRandomFirstName();
   const lastName = getRandomLastName();
-  const avatar = 'https://picsum.photos/30';
+  const avatar = 'https://picsum.photos/100';
   return {
     firstName,
     lastName,
@@ -78,7 +78,11 @@ export const getRandomUser = (): Receiver => {
  * @example
  */
 export const getRandomMessage = (): Message => {
-  const id = Date.now() + Math.floor(Math.random() * 1000);
+  const id =
+    Date.now() +
+    Math.floor(Math.random() * 1000) +
+    '-' +
+    Math.floor(Math.random() * 1000);
   const text = 'Lorem ipsum dolor sit amet';
   // generate a random date between 1 and 30 days ago
   const date = new Date();

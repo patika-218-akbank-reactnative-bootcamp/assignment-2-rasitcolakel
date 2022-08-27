@@ -1,15 +1,17 @@
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
 import React from 'react';
 import {Chat} from '../assets/messages';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+
 type Props = {
   chat: Chat;
+  onPress?: () => void;
 };
 
-export default function ChatComponent({chat}: Props) {
+export default function ChatComponent({chat, onPress}: Props) {
   const lastMessage = chat.messages[chat.messages.length - 1];
   return (
-    <View style={styles.container}>
+    <Pressable style={styles.container} onPress={onPress}>
       <Image
         source={{
           uri: chat.receiver.avatar,
@@ -30,7 +32,7 @@ export default function ChatComponent({chat}: Props) {
         </View>
         <EvilIcons name="chevron-right" style={styles.icon} />
       </View>
-    </View>
+    </Pressable>
   );
 }
 

@@ -1,8 +1,14 @@
 import * as React from 'react';
 import Home from './Home';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import ChatScreen from './ChatScreen';
+import {Chat as ChatType} from '../assets/messages';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  Home: undefined;
+  ChatScreen: {chat: ChatType};
+};
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigator = () => {
   return (
@@ -14,6 +20,7 @@ const Navigator = () => {
         },
       }}>
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="ChatScreen" component={ChatScreen} />
     </Stack.Navigator>
   );
 };
