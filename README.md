@@ -140,4 +140,6 @@ npm install --save react-native-vector-icons && @types/react-native-vector-icons
 ```java
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 ```
+
+Preview Of The App
 ![Simulator Screen Recording - iPhone 13 - 2022-08-27 at 10 06 33](https://user-images.githubusercontent.com/53280610/187019277-b40c1a46-3548-4608-8651-2ebe17f015a9.gif)
